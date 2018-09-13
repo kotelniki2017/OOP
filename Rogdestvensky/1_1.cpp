@@ -1,4 +1,4 @@
-// Рождественский, задание 1.1
+// Р РѕР¶РґРµСЃС‚РІРµРЅСЃРєРёР№, 1.1
 #include <iostream>
 #include "stdlib.h"
 #include <windows.h> 
