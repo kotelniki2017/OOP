@@ -9,10 +9,9 @@ int main() {
 	int cache;
 	int l = 100;
 	int *n = new int[l];
-	for (int i = 0; i < 1000; i++) {
+	for (int i = 0; i < l; i++) {
 		n[i] = i;
-		cout << n[i] << endl;
-		Sleep(50);
+		
 	}
 
 	for (int i = 2; i < l; i++) {
