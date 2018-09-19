@@ -2,7 +2,7 @@
 using namespace std;
 main()
 {
-  int n;
+  int n, s=0;
   cout<<"n=";
   cin>>n;
   int *a;
@@ -16,11 +16,17 @@ main()
       if(a[p]!=0)
 	{
 	  s=p+a[p];
-	  while(int s<n)
+	  while(s<n)
 	    {
 	      a[s]=0;
 	      s+=a[p];
 	    }
 	}
     }
+  for(int p=0; p<n; p++)
+    {
+      if(a[p]!=0)
+	cout<<a[p]<<endl;
+    }
+  return 0;
 }
