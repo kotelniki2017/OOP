@@ -1,21 +1,52 @@
 #include<iostream>
 using namespace std;
-int rand(int n, int k) {
- 
-     int res = 0;
-     for (int i=1; i<=n; ++i)
-         res = (res + k) % i;
-     return ++res;
- }
- 
-int main(){
-    int n,k;
-	{ 
-        cout<<"Введите людей и через скольких ";
-		cin>>n>>k;
-        if (n==0 && k==0) return 0;
-        if (n==1) cout<<"1"<<endl;
-        else cout<<rand(n,k);
-    }
-    return 0;
+struct two_list{
+int data;
+	struct two_list *next;
+	struct two_list *prev;
+};
+void add_first(two_list *&p, int a, two_list *&tail)
+{
+two_list *current=new two_list;
+	if(p!=NULL)
+	{
+	current->data=a;
+	current->next=p;
+	current->prev=NULL;
+	p->prev=current;
+		p=current;
+	}
+	else
+	{
+	current->data=a;
+	current->next=p;
+	current->prev=NULL;
+	p=current;
+		tail=p;
+	}
+}
+void add_last(two_list *&p1, two list *&p2, int a)
+{
+two_list *current=new two_list;
+	if(p2!=NULL)
+	{
+	current->data=a;
+		current->prev=p2;
+		current->next=NULL;
+		p2->next=current;
+		p2=current;
+	}
+	else
+	{
+	current->data=a;
+	current->prev=p2;
+	current->next=NULL;
+	p2=current;
+	p1=p2;
+	}
+}
+int main()
+{
+two_list *first = NULL, *last = NULL;
+  return 0;
 }

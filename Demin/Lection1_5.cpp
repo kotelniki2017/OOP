@@ -11,9 +11,7 @@ int pop(stack * &p)
     {
       
       int a = p->data;
-      stack * b = p->next;
-      delete [] p;
-      p=b;
+      p=p->next;
       return a;
     }
   else
