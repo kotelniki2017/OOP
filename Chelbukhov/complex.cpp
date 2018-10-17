@@ -1,4 +1,5 @@
 #include <iostream>
+// операциями надо руками выбирать, изменяя код
 
 using namespace std;
 
