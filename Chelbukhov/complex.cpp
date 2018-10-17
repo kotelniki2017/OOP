@@ -1,5 +1,6 @@
-#include <iostream>
-// операциями надо руками выбирать, изменяя код
+
+
+  #include <iostream>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ public:
   Complex delen (Complex, Complex);
   float   getReal(){return real;};
   float   getIma(){return ima;};
-  void    input(float, float);
+  void    input();
   void    show();
 private:
   float  real;
@@ -38,7 +39,7 @@ Complex Complex::delen(Complex a, Complex b)
 }
 
 
-void Complex :: input(float, float)
+void Complex :: input()
 {
   cout<<"input real"<<endl;
   cin >> real;
@@ -53,9 +54,12 @@ void Complex :: show()
 
 int main()
 {
-  Complex a(1,3),b(7,13),c(13,74),d(73,55);
-  b= b.plus(a,c);
-  b.show();
+  Complex a(1,3),b(2,4),c(0,0);
+  a.input();
+  b.input();
+  c= b.plus(a,b);
+  c.show();
 }
 
   
+
