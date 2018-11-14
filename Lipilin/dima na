@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+class test
+{
+public:
+  test(int);
+  ~test();
+  static int count_objects;
+  int get_instruction();
+  static void set_instruction(int);
+  int get_number();
+  int get_value();
+  void set_value(int);
+private:
+  int value;
+  int number_objects;
+  static int instruction;
+};
+
+int test::count_objects=0;
+int test::instruction =777;
+test::test(int a){
+  this->value=a;
+  count_objects++;
+  number_object=count_object;
+}
+test::~test(){}
+int test::get_instruction(){
+  return instruction;
+}
+
+void test::set_instruction(int x){
+  instruction=x;
+}
+int test::get_number(){
+  return number_object;
+}
+void test::set_value(int x){
+  value=x;
+}
+int test::get_value(){
+  return value;
+}
+
+int main()
+{
+  test A(5),B(7);
+  cout<<"номер A:"<<A.get_number()<<endl;
+  cout<<"номер B:"<<B.get_number()<<endl;
+  cout<<"Колво объектов:"<<A.count_objects<<endl;
+  cout<<"инструкции для объектов:"<<A.get_instruction()<<endl;
+  test::set_instruction(888);
+  cout<<"инструкции для объектов:"<<B.get_instruction()<<endl;
+  return 0;
+}
