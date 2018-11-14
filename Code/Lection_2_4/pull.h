@@ -17,7 +17,7 @@ class list
 {
  public:
   list(int);
-    //~list();
+  ~list();
   void show_list();
   // node get_list(int);
   void add_node_begin(int);

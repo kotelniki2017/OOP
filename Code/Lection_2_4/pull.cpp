@@ -33,11 +33,29 @@ void node::set_value(int x)
 }
 list::list(int x)
 {
-  node current;
-  current.set_value(x);
-  top=&current;
-  last=&current;
+  
+  node * current;
+  current = new node;
+  current->set_value(x);
+  top=current;
+  last=current;
 }
+
+list::~list()
+{
+  node * current_del, *current_next;
+  current_del = top;
+  while (current_del != NULL)
+    {
+      current_next = current_del->get_next();
+      delete current_del;
+      current_del = current_next;
+    }
+  cout<<"It's ok!";
+  
+}
+
+
 node list::get_top()
 {
   return *top;
@@ -48,18 +66,18 @@ node list::get_last()
 }
 void list::add_node_begin(int x)
 {
-  node current;
-  current.set_value(x);
-  current.set_next(top);
-  top->set_prev(&current);
-  top=&current;
-  cout<<top<<endl<<last<<endl;
+  node * current;
+  current = new node;
+  current->set_value(x);
+  current->set_next(top);
+  top->set_prev(current);
+  top=current;
 }
 void list::show_list()
 {
   node *x;
   x=top;
-  while(x != last)
+  while(x != NULL)
     {
       cout<<x->get_value()<<"->";
       x=x->get_next();
