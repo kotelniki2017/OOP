@@ -142,7 +142,7 @@ my_array&my_array::operator+=(int value)
 }
 void my_array::filling_random()
 {
-    for(int i=0; i<size;i++) mass[i]=rand()&100+1;
+    for(int i=0; i<size;i++) mass[i]=rand()%100+1;
 }
 
 
@@ -198,28 +198,105 @@ void MainWindow::on_pushButton_6_clicked()
 
 void MainWindow::on_action_triggered()
 {
-   switch (ui->spinBox->value()){
-   case 1:
        ui->comboBox->clear();
        for(int i=0;i<ArrayA.get_size();i++)
            ui->comboBox->insertItem(i,QString::number(ArrayA[i]));
-       break;
-   case 2:
+
        ui->comboBox_2->clear();
        for(int i=0;i<ArrayB.get_size();i++)
            ui->comboBox_2->insertItem(i,QString::number(ArrayB[i]));
-       break;
-   case 3:
+
        ui->comboBox_3->clear();
        for(int i=0;i<ArrayC.get_size();i++)
            ui->comboBox_3->insertItem(i,QString::number(ArrayC[i]));
-       break;
-   case 4:
+
        ui->comboBox_4->clear();
        for(int i=0;i<ArrayD.get_size();i++)
            ui->comboBox_4->insertItem(i,QString::number(ArrayD[i]));
-       break;
-   default:
-       break;
-   }
+
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    int a=ui->spinBox->value();
+    int b=ui->spinBox_2->value();
+    if(a=1 && b==1)
+    {
+        ArrayD=ArrayA+ArrayA;
+        MainWindow::on_action_triggered();
+    }
+    if(a=1 && b==2)
+    {
+        ArrayD=ArrayA+ArrayB;
+        MainWindow::on_action_triggered();
+    }
+    if(a=1 && b==3)
+    {
+        ArrayD=ArrayA+ArrayC;
+        MainWindow::on_action_triggered();
+    }
+    if(a=2 && b==1)
+    {
+        ArrayD=ArrayB+ArrayA;
+        MainWindow::on_action_triggered();
+    }
+    if(a=3 && b==1)
+    {
+        ArrayD=ArrayC+ArrayA;
+        MainWindow::on_action_triggered();
+    }
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    int a=ui->spinBox->value();
+    int b=ui->spinBox_2->value();
+    if(a=1 && b==1)
+    {
+        ArrayA=ArrayA;
+        MainWindow::on_action_triggered();
+    }
+    if(a=1 && b==2)
+    {
+        ArrayA=ArrayB;
+        MainWindow::on_action_triggered();
+    }
+    if(a=1 && b==3)
+    {
+        ArrayA=ArrayC;
+        MainWindow::on_action_triggered();
+    }
+    if(a=2 && b==1)
+    {
+        ArrayB=ArrayA;
+        MainWindow::on_action_triggered();
+    }
+    if(a=3 && b==1)
+    {
+        ArrayC=ArrayA;
+        MainWindow::on_action_triggered();
+    }
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    switch (ui->spinBox->value())
+    {
+    case 1:
+        ArrayA+=ui->spinBox_2->value();
+        MainWindow::on_action_triggered();
+        break;
+    case 2:
+        ArrayB+=ui->spinBox_2->value();
+        MainWindow::on_action_triggered();
+        break;
+    case 3:
+        ArrayC+=ui->spinBox_2->value();
+        MainWindow::on_action_triggered();
+        break;
+    case 4:
+        ArrayD+=ui->spinBox_2->value();
+        MainWindow::on_action_triggered();
+        break;
+    }
 }
