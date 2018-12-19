@@ -15,7 +15,7 @@ protected:
 public:
     man(string, string, string, int, int, int);
     string get_lastname()const;
-    string get_first()const;
+    string get_firstname()const;
     string get_secondname()const;
     int get_dayOfbirth()const;
     int get_monthOfbirth()const;
@@ -34,7 +34,7 @@ string man::get_lastname()const
 {
     return lastname;
 }
-string man::get_first()const
+string man::get_firstname()const
 {
     return firstname;
 }
@@ -58,6 +58,7 @@ void man::set_changeLastname(string ln)
 {
     lastname=ln;
 }
+/*
 class Student: public man
 {
 protected:
@@ -148,6 +149,8 @@ void Workman::set_Place(string Pl)
 {
     Place=Pl;
 }
+
+*/
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -159,48 +162,29 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 template <class T>
 class node
 {
  public:
-  node();
+  node(T*);
   void set_next(node*);
   void set_prev(node*);
-  void set_value(T value);
+  void set_value(T* value);
   node* get_next();
   node* get_prev();
   T get_value();
  private:
-  T value;
+  T* value;
   node* next;
   node* prev;
 };
-template <class T>
-class list
-{
- public:
-  list(T);
-  ~list();
-  void show_list();
-  // node get_list(int);
-  void add_node_begin(T);
-  /*
-  node add_node_end(int);
-  node del_node_begin(int);
-  node del_node_end(int);
-  */
-  node<T> get_top();
-  node<T> get_last();
 
- private:
-  T n;
-  node<T>* top;
-  node<T>* last;
-};
 template <class T>
-node<T>::node()
+node<T>::node(T* a)
 {
-  value=0;
+  value=a;
   next=NULL;
   prev=NULL;
 }
@@ -230,20 +214,63 @@ void node<T>::set_prev(node* p)
   prev=p;
 }
 template <class T>
-void node<T>::set_value(T x)
+void node<T>::set_value(T* x)
 {
   value=x;
 }
-template <class T>
-list::list(T x)
-{
 
-  node * current;
-  current = new node;
-  current->set_value(x);
-  top=current;
-  last=current;
+template <class T>
+class mylist
+{
+ public:
+  mylist(node<T>*);
+//  ~mylist();
+  void add_node(node<T>*);
+  node<T>* get_left();
+  node<T>* get_right();
+  node<T>* get_current();
+  void set_current(node<T>*);
+private:
+  node<T>* current;
+  node<T>* top;
+};
+
+
+template <class T>
+mylist<T>::mylist(node<T>* a)
+{
+  current = a;
+  top = a;
 }
+
+
+template <class T>
+void mylist<T>::add_node(node<T>* a)
+{
+  top->set_prev(a);
+  a->set_next(top);
+  top=a;
+}
+
+template <class T>
+node<T>* mylist<T>::get_current()
+{
+  return current;
+}
+
+template <class T>
+node<T>* mylist<T>::get_next()
+{
+  return current->get_next();
+}
+
+template <class T>
+node<T>* mylist<T>::get_prev()
+{
+  return current->get_prev();
+}
+
+/*
 template <class T>
 list::~list()
 {
@@ -292,3 +319,17 @@ void list::show_list()
   cout<<endl;
 }
 
+*/
+
+man human ("adamov","edem", "edemovich", 1,1,1);
+node<man> firstnode(&human);
+mylist<man> g(&firstnode);
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    man a(ui->lineEdit->text().toStdString(), ui->lineEdit_2->text().toStdString(),
+          ui->lineEdit_3->text().toStdString(),
+          ui->spinBox->value(),ui->spinBox_2->value(), ui->spinBox_3->value());
+
+}
